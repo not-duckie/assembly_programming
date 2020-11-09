@@ -5,5 +5,4 @@ _start:
 	mov ebx,25
 	mov ecx,10
 	sub ebx,ecx
-	mov eax,1
 	int 0x80
