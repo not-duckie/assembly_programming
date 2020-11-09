@@ -2,7 +2,9 @@
 
 ## Begining of the program
 
-```global _start:````
+```
+global _start:
+````
 
 global directive is nasm specific. It is used for exporting symbols in your code, to where it points in the object code generated.
 global basically mark the _start symbol global so its name is added in the object code so the linker knows where the flow of the program starts. If you want you specify a different name, use the flag -e in ld command to tell linker.
