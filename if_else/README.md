@@ -11,3 +11,4 @@ jg => jmp if greater than
 jl => jmp if less than
 jle => jmp if less than or equal to
 jge => jmp if greater than or equal to 
+jne => jmp if not equal to
