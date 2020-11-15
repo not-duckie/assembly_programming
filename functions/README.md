@@ -27,3 +27,33 @@ print:
 	int 0x80
 ```
 
+## ebp usage
+
+Many new hacker during binary exploitation are confused between usage of esp and ebp. The ebp is used to contain the value of esp during function calls so the return address is not lost. So you can do is, `mov` the value of esp to ebp and then manipulate the stack in whatevery fashion you want and when you are done you can `mov` ebp to esp and then ret. ebp is life saver here.
+
+example code:
+
+```
+_start:
+	call print		
+
+
+	mov eax,1
+	mov ebx,0
+	int 0x80
+
+print:
+	mov ebp,esp
+	sub esp,2
+	mov [esp], byte 'H'
+	mov [esp+1], byte 'I'
+	
+	mov eax,4
+	mov ebx,1
+	mov ecx,esp
+	mov edx,2
+	int 0x80
+	
+	mov esp,ebp
+	ret
+```
