@@ -29,7 +29,7 @@ print:
 
 ## ebp usage
 
-Many new hacker during binary exploitation are confused between usage of esp and ebp. The ebp is used to contain the value of esp during function calls so the return address is not lost. So you can do is, `mov` the value of esp to ebp and then manipulate the stack in whatevery fashion you want and when you are done you can `mov` ebp to esp and then ret. ebp is life saver here.
+Many new hacker during binary exploitation are confused between usage of esp and ebp. The ebp is used to contain the value of esp during function calls so the return address is not lost. So you can do is, `mov` the value of esp to ebp and then manipulate the stack in whatever fashion you want and when you are done you can `mov` ebp to esp and then ret. ebp is life saver here.
 
 example code:
 
@@ -57,3 +57,32 @@ print:
 	mov esp,ebp
 	ret
 ```
+
+
+### Calling a func inside func (Recursion)
+
+Sometime you need to call a func inside func then value of ebp is overwritten and the return address of first function is lost. During those times you can push the value of ebp to stack, so the you can later pop this value back and return peacefully.
+g
+example code:
+
+```
+func:
+	push ebp
+	mov ebp, esp
+	
+	sub esp,2
+	mov [esp], byte 'H'
+	mov [esp+1], byte 'I'
+	
+	mov eax,4
+	mov ebx,1
+	mov ecx,esp
+	mov edx,2
+	int 0x80
+
+	mov esp,ebp
+	pop ebp
+	ret
+```
+
+the first 2 lines of code is called prologue and the last 3 lines is called epilogue
