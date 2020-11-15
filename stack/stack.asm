@@ -4,13 +4,14 @@ section .text
 
 _start:
 
-	sub esp,6
+	sub esp,8
 	mov [esp], byte 'H'
 	mov [esp+1], byte 'e'
 	mov [esp+2], byte 'l'
 	mov [esp+3], byte 'l'
 	mov [esp+4], byte 'o'
 	mov [esp+5], byte '!'
+	mov [esp+6], byet '0x'
 	mov eax,4
 	mov ebx,1
 	mov ecx,esp
