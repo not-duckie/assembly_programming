@@ -5,8 +5,8 @@ section .bss
 	info resb 50
 
 section .data
-	msg db "Tubro Programmer v2.0"
-	len equ $ - len
+	msg db "Tubro Programmer v2.0",0x0a
+	len equ $ - msg
 	file db "/etc/passwd"
 	len2 equ $ - file
 
@@ -27,9 +27,8 @@ _start:
 	int 0x80
 
 ;reading file
-	mov [fd],eax
+	mov ebx,eax
 	mov eax,3
-	mov ebx,[fd]
 	mov ecx,info
 	mov edx,50
 	int 0x80
@@ -41,7 +40,7 @@ _start:
 	mov edx,50
 	int 0x80
 
-;exit
+	;exit
 	mov eax,1
 	mov ebx,0
 	int 0x80
