@@ -22,6 +22,9 @@ _start:
 	xor ecx,ecx
 
 loop_outer:
+
+	inc edi ; inc cause we start off 1
+
 	push ebx
 	push ecx
 	push edx
@@ -37,6 +40,8 @@ loop_outer:
 	mov ebx,eax
 
 		loop_inner:
+			inc edx ; inc casue start off 1
+
 			push ebx
 			push ecx
 			push edi
@@ -91,8 +96,7 @@ loop_outer:
 			pop ecx
 			pop ebx
 
-			inc edx
-			cmp edx,0xb
+			cmp edx,0xa
 			jnz loop_inner
 
 	push banner_len
@@ -103,8 +107,7 @@ loop_outer:
 
 
 	xor edx,edx
-	inc edi
-	cmp edi,0xa
+	cmp edi,0x9
 	jnz loop_outer
 
 	jmp exit
